@@ -4,13 +4,6 @@ namespace Closure
 {
     public struct FuncClosure
     {
-        private Delegate _delegate;
-
-        private Value _0;
-        private Value _1;
-        private Value _2;
-        private Value _3;
-
         public static FuncClosure Create<T, TResult>(Func<T, TResult> action, T arg0)
         {
             return new FuncClosure
@@ -72,5 +65,12 @@ namespace Closure
         {
             return (_delegate as Func<T0, T1, T2, T3, TResult>).Invoke(Value.UnPack<T0>(_0), Value.UnPack<T1>(_1), Value.UnPack<T2>(_2), Value.UnPack<T3>(_3));
         }
+
+        private Delegate _delegate;
+
+        private Value _0;
+        private Value _1;
+        private Value _2;
+        private Value _3;
     }
 }

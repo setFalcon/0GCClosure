@@ -46,6 +46,13 @@ namespace Closure
             return value;
         }
 
+        private static Value Ctor(object _class)
+        {
+            Value value = new Value();
+            value._value = new __Value() { _class = _class };
+            return value;
+        }
+
         public static Value Pack<T>(T _value)
         {
             return Packer<T>._invoke(_value);
@@ -66,6 +73,7 @@ namespace Closure
                 Packer<float>._invoke = (v) => Value.Ctor(v);
                 Packer<double>._invoke = (v) => Value.Ctor(v);
                 Packer<string>._invoke = (v) => Value.Ctor(v);
+                Packer<object>._invoke = (v) => Value.Ctor(v);
             }
 
             internal static Func<T, Value> _invoke = null;
@@ -81,6 +89,7 @@ namespace Closure
                 UnPacker<float>._invoke = (v) => v._value._single;
                 UnPacker<double>._invoke = (v) => v._value._double;
                 UnPacker<string>._invoke = (v) => v._value._string;
+                UnPacker<object>._invoke = (v) => v._value._class;
             }
 
             internal static Func<Value, T> _invoke = null;

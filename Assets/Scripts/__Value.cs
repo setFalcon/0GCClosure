@@ -8,5 +8,6 @@
         internal float _single;
         internal double _double;
         internal string _string;
+        internal object _class;
     }
 }
